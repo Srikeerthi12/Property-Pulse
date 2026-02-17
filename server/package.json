@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "db:init": "node scripts/init-db.js",
+    "admin:create": "node scripts/create-admin.js",
+    "db:migrate:phase3": "node scripts/migrate-phase3.js",
+    "db:migrate:phase4": "node scripts/migrate-phase4.js",
+    "db:migrate:phase5": "node scripts/migrate-phase5.js",
+    "db:migrate:phase5:deal-documents": "node scripts/migrate-phase5-deal-documents.js",
+    "lint": "eslint .",
+    "build": "echo 'no build step'"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.6",
+    "pg": "^8.16.3",
+    "uuid": "^11.1.0",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.33.0",
+    "nodemon": "^3.1.10"
+  }
+}
