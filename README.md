@@ -1,244 +1,264 @@
-PropertyPulse — Real Estate CRM & Property Management Platform
+<h1 align="center">PropertyPulse — Real Estate CRM &amp; Property Management Platform</h1>
 
 PropertyPulse is a full-stack Real Estate Customer Relationship Management (CRM) platform designed to streamline property transactions between buyers, sellers, agents, and administrators.
 
 The system manages the complete lifecycle of a property — from listing creation to lead generation, visit scheduling, and deal progression — using a structured workflow with role-based permissions.
 
-Built with the PERN stack (PostgreSQL, Express.js, React.js, Node.js), the platform emphasizes scalability, secure authentication, and real-world business logic implementation.
+Built with the **PERN** stack (PostgreSQL, Express.js, React.js, Node.js), the platform emphasizes scalability, secure authentication, and real-world business logic implementation.
 
-✨ Core Concept
+---
+
+##  Core Concept
 
 The platform follows a CRM pipeline commonly used in real estate companies:
 
-Property Listing → Buyer Inquiry → Agent Interaction → Visit → Deal
+**Property Listing → Buyer Inquiry → Agent Interaction → Visit → Deal**
 
 Each stage is controlled through state-machine validation to maintain data integrity and workflow consistency.
 
-🚀 Key Features
-🔐 Authentication & Role Management
+---
 
-JWT-based authentication
+##  Key Features
 
-Role-Based Access Control (RBAC)
+###  Authentication &amp; Role Management
 
-Four user roles:
+- JWT-based authentication
+- Role-Based Access Control (RBAC)
+- Four user roles:
+	- Buyer
+	- Seller
+	- Agent
+	- Admin
+- Account activation and deactivation
+- Secure password hashing using `bcrypt`
+- Rate-limited login endpoints
 
-Buyer
+###  Property Management
 
-Seller
+- Create, edit, and manage property listings
+- Multi-image upload support
+- Property moderation workflow:
+	- Draft → Pending → Approved → Inactive
+- Public property browsing with filters and search
+- Property view tracking and activity logs
+- Admin approval and rejection system
 
-Agent
+###  CRM Lead Management
 
-Admin
+- Buyer inquiries linked to properties
+- Automatic or manual agent assignment
+- Lead status pipeline:
+	- New → Contacted → Visit Scheduled → Negotiation → Closed → Dropped
+- Agent notes and interaction history
+- Seller lead analytics per property
+- Admin lead oversight and reassignment
 
-Account activation and deactivation
+###  Visit Scheduling System
 
-Secure password hashing (bcrypt)
+- Schedule visits directly from inquiries
+- Reschedule, confirm, and cancel appointments
+- Visit status tracking:
+	- Scheduled
+	- Completed
+	- Cancelled
+	- No-Show
+- Agent calendar interface
+- Seller visit monitoring
+- Admin visit management
 
-Rate-limited login endpoints
+###  File Upload Management
 
-🏡 Property Management
+- Property image uploads
+- Static file serving from backend
+- Secure path validation to prevent traversal attacks
 
-Create, edit, and manage property listings
+---
 
-Multi-image upload support
+##  Workflow Architecture
 
-Property moderation workflow:
+**Buyer → Inquiry → Agent Assignment → Visit → Deal → Closure**
 
-Draft → Pending → Approved → Inactive
+This architecture ensures controlled transitions between stages and prevents invalid operations.
 
-Public property browsing with filters and search
+---
 
-Property view tracking and activity logs
+## 🛠 Tech Stack
 
-Admin approval and rejection system
+### Frontend
 
-📊 CRM Lead Management
+- React.js
+- React Router
+- Axios
+- React Big Calendar
+- Modern responsive UI (Tailwind &amp; custom components)
 
-Buyer inquiries linked to properties
+### Backend
 
-Automatic or manual agent assignment
+- Node.js
+- Express.js
+- PostgreSQL
+- JWT Authentication
+- Multer (file uploads)
+- Zod validation
 
-Lead status pipeline:
+### Database
 
-New → Contacted → Visit Scheduled → Negotiation → Closed → Dropped
+- PostgreSQL relational schema
+- Indexed queries for performance
+- Audit logging for traceability
 
-Agent notes and interaction history
+---
 
-Seller lead analytics per property
+## 📁 Project Structure
 
-Admin lead oversight and reassignment
-
-📅 Visit Scheduling System
-
-Schedule visits directly from inquiries
-
-Reschedule, confirm, and cancel appointments
-
-Visit status tracking:
-
-Scheduled
-
-Completed
-
-Cancelled
-
-No-Show
-
-Agent calendar interface
-
-Seller visit monitoring
-
-Admin visit management
-
-🧠 Workflow Architecture
-Buyer → Inquiry → Agent Assignment → Visit → Deal → Closure
-
-This architecture ensures controlled transitions between stages.
-
-🛠 Tech Stack
-Frontend
-
-React.js
-
-React Router
-
-Axios
-
-React Big Calendar
-
-Responsive UI
-
-Backend
-
-Node.js
-
-Express.js
-
-PostgreSQL
-
-JWT Authentication
-
-Multer (file uploads)
-
-Zod validation
-
-Database
-
-PostgreSQL relational schema
-
-Indexed queries for performance
-
-Audit logging
-
-📁 Project Structure
+```bash
 PropertyPulse/
 │
 ├── client/                     # React frontend
 │   ├── src/
 │   │   ├── components/         # Reusable UI components
-│   │   ├── pages/              # Role-based pages
-│   │   ├── services/           # API layer
-│   │   ├── layouts/            # Layouts and navigation
+│   │   ├── pages/              # Role-based pages (Buyer, Seller, Agent, Admin)
+│   │   ├── services/           # API communication layer
+│   │   ├── context/            # Auth & notification contexts
+│   │   ├── utils/              # Client-side helpers
 │   │   └── App.jsx
+│   └── package.json
 │
 ├── server/                     # Node.js backend
 │   ├── src/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   ├── config/
-│   │   └── utils/
-│   │
-│   ├── schema.sql
+│   │   ├── controllers/        # Request handlers
+│   │   ├── models/             # Database queries and logic
+│   │   ├── routes/             # API route definitions
+│   │   ├── middleware/         # Auth, validation, rate limiting
+│   │   ├── config/             # Configuration utilities
+│   │   ├── utils/              # Helpers and validators
+│   │   └── app.js
+│   ├── schema.sql              # Database schema
 │   └── package.json
 │
 └── README.md
-⚙️ Prerequisites
+```
 
-Node.js 18+
+---
 
-PostgreSQL 14+
+##  Prerequisites
 
-npm or yarn
+Make sure the following are installed:
 
-🚀 Setup Instructions
-1️⃣ Clone Repository
-git clone https://github.com/vishal261104/Connect_Flow.git
-cd Connect_Flow
-2️⃣ Backend Setup
+- Node.js (v18 or higher)
+- PostgreSQL (v14+ recommended)
+- npm or yarn
+
+---
+
+##  Setup Instructions
+
+> Replace `your-repo-url` and folder name with your actual repository details.
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone &lt;your-repo-url&gt;
+cd PropertyPulse
+```
+
+### 2️⃣ Backend Setup
+
+Navigate to the server folder and install dependencies:
+
+```bash
 cd server
 npm install
+```
 
-Create .env inside server/:
+Create a `.env` file inside `server/`:
 
+```env
 PORT=5001
 DATABASE_URL=postgresql://username:password@localhost:5432/propertypulse
 JWT_ACCESS_SECRET=your_secret_key
 CLIENT_ORIGIN=http://localhost:5173
+```
 
-Run migrations (if applicable):
+Run database migrations (if applicable):
 
+```bash
 npm run db:migrate
+```
 
-Start backend:
+Start backend server:
 
+```bash
 npm run dev
+```
 
 Health check:
 
+```text
 http://localhost:5001/health
-3️⃣ Frontend Setup
-cd client
+```
+
+### 3️⃣ Frontend Setup
+
+Navigate to the client folder and install dependencies:
+
+```bash
+cd ../client
 npm install
+```
 
-Optional .env:
+Optional `.env` inside `client/`:
 
+```env
 VITE_API_URL=http://localhost:5001/api
+```
 
 Start frontend:
 
+```bash
 npm run dev
+```
 
-If port is busy:
+If default port is busy:
 
+```bash
 npm run dev -- --port 5173
-🔐 Security Features
+```
 
-JWT authentication
+---
 
-Password hashing with bcrypt
+##  Security Features
 
-Role-based authorization
+- JWT token authentication
+- Password hashing with `bcrypt`
+- Role-based authorization
+- Input validation with Zod
+- Rate limiting to prevent abuse
+- Secure file upload handling
+- Audit logs for system actions
 
-Input validation with Zod
+---
 
-Rate limiting
+##  Current Implementation Status
 
-Secure file uploads
+**Completed:**
 
-Audit logs
+- Authentication &amp; User Management
+- Property Management
+- CRM Leads System
+- Visit Scheduling
 
-📊 Current Implementation Status
+Project implemented up to **Phase 4 — CRM &amp; Visit Management**.
 
-Completed:
+---
 
-✅ Authentication & User Management
-✅ Property Management
-✅ CRM Leads System
-✅ Visit Scheduling
+##  Future Enhancements
 
-Project implemented up to Phase 4 — CRM & Visit Management.
+Planned modules:
 
-🚧 Future Enhancements
-
-Deal financial management
-
-Payment gateway integration
-
-Notifications system
-
-Real-time messaging/chat
-
-Advanced analytics dashboard
+- Deal financial management
+- Payment gateway integration
+- Notifications system
+- Real-time messaging / chat
+- Advanced analytics dashboard
+#
